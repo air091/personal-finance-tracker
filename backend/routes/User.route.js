@@ -8,4 +8,7 @@ userRouter.post("/", userController.post_addUser);
 userRouter.put("/:id", userController.put_userById);
 userRouter.delete("/:id", userController.delete_userById);
 
+// AUTH
+userRouter.post("/login", userController.logIn_user);
+
 module.exports = userRouter;

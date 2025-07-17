@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../util/AuthContext";
 
 const Login = () => {
+  const { setIsLoggedIn } = useContext(AuthContext);
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -16,7 +18,7 @@ const Login = () => {
   };
 
   const getData = async () => {
-    const URL = "http://localhost:8000/api/user";
+    const URL = "http://localhost:8000/api/user/login";
     try {
       const response = await fetch(URL, {
         method: "POST",
@@ -34,6 +36,8 @@ const Login = () => {
       const json = await response.json();
       console.log(json);
       console.log("Login");
+      localStorage.setItem("email", credentials.email);
+      setIsLoggedIn(true);
     } catch (error) {
       console.error("Data error:", error);
     }
