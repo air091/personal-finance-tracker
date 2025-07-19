@@ -1,13 +1,16 @@
-import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../util/AuthContext";
+import { useState } from "react";
+import { Link, useNavigate, Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
-  const { setIsLoggedIn } = useContext(AuthContext);
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
+  const { user, login } = useAuth();
+  const navigate = useNavigate();
+
+  if (user) return <Navigate to="/home" replace />;
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -34,10 +37,11 @@ const Login = () => {
       if (!response.ok) throw new Error(`Response status: ${response.status}`);
 
       const json = await response.json();
-      console.log(json);
-      console.log("Login");
-      localStorage.setItem("email", credentials.email);
-      setIsLoggedIn(true);
+      login({
+        id: json.data.userId,
+        username: json.data.username,
+      });
+      navigate("/");
     } catch (error) {
       console.error("Data error:", error);
     }

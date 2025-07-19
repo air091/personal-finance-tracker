@@ -77,7 +77,7 @@ module.exports.logIn_user = async (request, response) => {
         .status(401)
         .json({ status: false, message: "Invalid email or password" });
 
-    response.status(200).json({ status: true, message: "Login successfully" });
+    response.status(200).json({ status: true, data: user });
   } catch (error) {
     response.status(500).json({ status: false, errorMessage: error });
   }

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Register = () => {
   const [credentials, setCredentials] = useState({
@@ -7,6 +8,9 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const { user } = useAuth();
+
+  if (user) return <Navigate to="/" replace />;
 
   const handleRegister = async (e) => {
     e.preventDefault();
