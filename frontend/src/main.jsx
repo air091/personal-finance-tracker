@@ -11,19 +11,34 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import { AuthProvider } from "./context/AuthContext";
+import Transactions from "./pages/Transactions";
+import Layout from "./Layout";
+import Budgets from "./pages/Budgets";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <ProtectedRoutes />,
+    element: (
+      <ProtectedRoutes>
+        <Layout />
+      </ProtectedRoutes>
+    ),
     children: [
+      {
+        index: true,
+        element: <Navigate to="/home" replace />,
+      },
       {
         path: "home",
         element: <Home />,
       },
       {
-        path: "",
-        element: <Navigate to="/home" replace />,
+        path: "transactions",
+        element: <Transactions />,
+      },
+      {
+        path: "budgets",
+        element: <Budgets />,
       },
     ],
   },
