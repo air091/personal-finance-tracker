@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { data, NavLink } from "react-router-dom";
+import Modal from "../components/transactions/Modal";
 
 const Transactions = () => {
   const [isActive, setIsActive] = useState(false);
@@ -45,7 +45,9 @@ const Transactions = () => {
               <div className="w-full">
                 <div className="flex justify-between">
                   <span>{data.category}</span>
-                  <span>{data.amount}</span>
+                  <span className="text-red-500 font-bold">
+                    -${data.amount}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <p>{data.description}</p>
@@ -64,23 +66,5 @@ const Transactions = () => {
     </div>
   );
 };
-
-function Modal({ setIsActive }) {
-  return (
-    <div className="absolute h-screen w-full flex items-center justify-center top-0 left-0 bg-red-100">
-      <div className="border">
-        <nav>
-          <ul>
-            <NavLink to="/transactions/gain">Gain</NavLink>
-            <NavLink to="/transactions/expenses">Expense</NavLink>
-          </ul>
-        </nav>
-        <button className="border px-4" onClick={() => setIsActive(false)}>
-          Cancel
-        </button>
-      </div>
-    </div>
-  );
-}
 
 export default Transactions;
