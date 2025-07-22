@@ -5,10 +5,10 @@ import { Outlet } from "react-router-dom";
 const Layout = () => {
   return (
     <div>
-      {/* <Navbar /> */}
+      <Navbar />
       <div className="flex">
         <SideBar />
-        <main>
+        <main className="w-full">
           <Outlet />
         </main>
       </div>
