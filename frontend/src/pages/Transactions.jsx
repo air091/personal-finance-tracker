@@ -32,14 +32,27 @@ const Transactions = () => {
   }, []);
 
   return (
-    <div className=" bg-green-300">
+    <div className="">
       {loading && <div>Loading...</div>}
       {!loading && datas.length === 0 && <div>No transaction found</div>}
       {!loading && datas.length > 0 && (
         <div>
           {datas.map((data) => (
-            <div key={data.expenseId} className="mb-2 border w-full">
-              Amount: {data.amount}
+            <div
+              key={data.expenseId}
+              className="mb-2 border w-full flex justify-between"
+            >
+              <div className="w-full">
+                <div className="flex justify-between">
+                  <span>{data.category}</span>
+                  <span>{data.amount}</span>
+                </div>
+                <div className="flex justify-between">
+                  <p>{data.description}</p>
+                  <span>{data.method}</span>
+                </div>
+              </div>
+              <button className="bg-blue-400 px-4">edit</button>
             </div>
           ))}
         </div>
