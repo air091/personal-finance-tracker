@@ -11,14 +11,14 @@ const Expense = () => {
         return (
             <div className="flex">
                 <div>
-                    <label htmlFor="category" className="block">Category:</label>
-                    <input id="category" type="text" className="border" />
+                    <label className="block">Category:</label>
+                    <input type="text" className="border" />
                 </div>
                 <div>
-                    <label htmlFor="amount" className="block">Amount:</label>
+                    <label className="block">Amount:</label>
                     <div>
                         <span>$</span>
-                        <input id="amount" type="text" className="border" />
+                        <input type="text" className="border" />
                     </div>
                 </div>
             </div>

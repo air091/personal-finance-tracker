@@ -1,7 +1,9 @@
 import React from "react";
 
 const AddExpenseGain = () => {
-  return <div>AddExpenseGain</div>;
+  return <div>
+
+  </div>;
 };
 
 export default AddExpenseGain;
